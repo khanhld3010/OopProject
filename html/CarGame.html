@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-color: #2c3e50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        canvas {
+            background-color: #444; /* Màu nhựa đường */
+            border: 3px solid #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+<div style="text-align: center; font-family: Arial, sans-serif; margin-bottom: 10px;">
+    <h2>Điểm số:
+        <span id="scoreValue" style="color: red; font-size: 30px;">0</span>
+    </h2>
+</div>
+
+<canvas id="gameCanvas" width="400" height="600"></canvas>
+
+
+<script src="../js/CarGame/Car.js"></script>
+<script src="../js/CarGame/Rock.js"></script>
+<script src="../js/CarGame/Present.js"></script>
+<script src="../js/CarGame/CarControl.js"></script>
+<script src="../js/CarGame/gameplayLogic.js"></script>
+
+
+<script>
+    let car = new Car("image/images.jpg")
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+
+    // --- 1. THÔNG SỐ ĐƯỜNG ĐUA ---
+    const totalLanes = 5;
+    const laneWidth = canvas.width / totalLanes; // Chiều rộng mỗi làn (400 / 5 = 80px)
+    let roadSpeed = car.speed;      // Tốc độ trôi của đường
+    let lineOffset = 0;     // Biến phục vụ hiệu ứng trôi vạch kẻ
+
+    // --- 2. HÀM VẼ GIAO DIỆN ĐƯỜNG ---
+    function drawRoad() {
+        // Thiết lập kiểu vẽ vạch đứt
+        ctx.strokeStyle = "white";
+        ctx.lineWidth = 4;
+        ctx.setLineDash([25, 20]); // [chiều dài vạch, chiều dài khoảng trống]
+
+        // Tạo hiệu ứng trôi xuống
+        lineOffset += car.speed;
+        if (lineOffset > 45) { // 25 + 20 = 45 (Reset lại khi trôi hết 1 chu kỳ)
+            lineOffset = 0;
+        }
+        ctx.lineDashOffset = -lineOffset;
+
+        // Vẽ các đường phân làn
+        for (let i = 1; i < totalLanes; i++) {
+            let xPosition = i * laneWidth;
+
+            ctx.beginPath();
+            ctx.moveTo(xPosition, 0);
+            ctx.lineTo(xPosition, canvas.height);
+            ctx.stroke();
+        }
+
+        // Tắt chế độ nét đứt để không ảnh hưởng đến các đối tượng bạn vẽ sau này
+        ctx.setLineDash([]);
+    }
+
+    setInterval(createRock, 1500);
+    setInterval(createPresent,2000)
+
+    // Khởi động game
+    gameLoop();
+</script>
+
+
+</body>
+</html>
