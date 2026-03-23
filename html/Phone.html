@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        /* Mình để sẵn một chút CSS cơ bản giúp bạn dễ hình dung bố cục */
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; gap: 50px; padding: 50px; background-color: #f0f0f0; }
+        .phone { width: 320px; background: #fff; border: 2px solid #333; border-radius: 20px; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .screen { height: 180px; background: #e0e0e0; border-radius: 10px; padding: 10px; margin-bottom: 15px; overflow-y: auto; font-size: 14px; border: 1px inset #ccc;}
+        .controls button { margin: 5px 2px; padding: 8px 10px; cursor: pointer; border: 1px solid #ccc; background: #eee; border-radius: 5px; font-size: 13px;}
+        .controls button:hover { background: #ddd; }
+        .controls input { width: calc(100% - 22px); padding: 8px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; }
+        h2 { text-align: center; margin-top: 0; color: #333; }
+        .row { margin-bottom: 10px; }
+    </style>
+
+</head>
+<body>
+<div class="phone" id="nokia-phone">
+    <h2>Nokia</h2>
+    <div class="screen" id="nokia-screen">Màn hình Nokia...</div>
+
+    <div class="controls">
+        <div class="row">
+            <button id="btn-nokia-power">Nguồn</button>
+            <button id="btn-nokia-battery">Kiểm tra Pin</button>
+            <button id="btn-nokia-charge">Sạc Pin</button>
+        </div>
+
+        <hr>
+
+        <label for="input-nokia-message"></label><input type="text" id="input-nokia-message" placeholder="Soạn tin nhắn...">
+        <div class="row">
+            <button id="btn-nokia-draft">Lưu Nháp</button>
+            <button id="btn-nokia-check-draft">Xem Nháp</button>
+            <button id="btn-nokia-clear-draft">Xóa Nháp</button>
+        </div>
+        <div class="row">
+            <button id="btn-nokia-send" style="width: 100%; font-weight: bold;">Gửi sang iPhone</button>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <button id="btn-nokia-inbox">Hộp thư đến</button>
+            <button id="btn-nokia-history">Thư đã gửi</button>
+        </div>
+    </div>
+</div>
+
+<div class="phone" id="iphone-phone">
+    <h2>iPhone</h2>
+    <div class="screen" id="iphone-screen">
+        Màn hình iPhone...
+    </div>
+
+    <div class="controls">
+        <div class="row">
+            <button id="btn-iphone-power">Nguồn</button>
+            <button id="btn-iphone-battery">Kiểm tra Pin</button>
+            <button id="btn-iphone-charge">Sạc Pin</button>
+        </div>
+
+        <hr>
+
+        <label for="input-iphone-message"></label><input type="text" id="input-iphone-message" placeholder="Soạn tin nhắn...">
+        <div class="row">
+            <button id="btn-iphone-draft">Lưu Nháp</button>
+            <button id="btn-iphone-check-draft">Xem Nháp</button>
+            <button id="btn-iphone-clear-draft">Xóa Nháp</button>
+        </div>
+        <div class="row">
+            <button id="btn-iphone-send" style="width: 100%; font-weight: bold;">Gửi sang Nokia</button>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <button id="btn-iphone-inbox">Hộp thư đến</button>
+            <button id="btn-iphone-history">Thư đã gửi</button>
+        </div>
+    </div>
+</div>
+<script src="../js/jsForPhoneExample/Phone.js"></script>
+    <script src="../js/jsForPhoneExample/IphoneAction.js"></script>
+    <script src="../js/jsForPhoneExample/NokiaAction.js"></script>
+<script>
+    displayScreenIphone("")
+</script>
+<script>
+    displayScreenNokia("")
+</script>
+</body>
+</html>
