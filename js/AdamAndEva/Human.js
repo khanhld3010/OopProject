@@ -9,7 +9,7 @@ function Human(name,gender,weight){
     }
     this.eat = function(apple){
         if(apple.weight > 0){
-            apple.weight -=1;
+            apple.decreaseWeight();
             this.weight +=1;
             console.log(`${this.name} vừa ăn một miếng táo`);
         }
